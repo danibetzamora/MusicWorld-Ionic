@@ -1,0 +1,63 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Register</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <form (ngSubmit)="register()">
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label>Name</ion-label>
+            <ion-input type="text" [(ngModel)]="form.name" name="Name"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label>Surname</ion-label>
+            <ion-input type="text" [(ngModel)]="form.surname" name="Surname"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label>E-mail</ion-label>
+            <ion-input type="text" [(ngModel)]="form.email" name="E-mail"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label>Password</ion-label>
+            <ion-input type="password" [(ngModel)]="form.password" name="Password"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label>Confirm password</ion-label>
+            <ion-input type="password" [(ngModel)]="form.password_confirmation" name="Confirm password"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col class="ion-text-right">
+          <ion-button ion-button type="submit" block>Add Todo</ion-button>
+        </ion-col>
+      </ion-row>
+
+    </form>
+  </ion-grid>
+</ion-content>
