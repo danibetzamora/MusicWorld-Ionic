@@ -1,0 +1,13 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>favorites</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item *ngFor="let gig of sqlite.FAVS">
+    <ion-label>
+      <h2><strong>{{ gig.name }}</strong></h2>
+    </ion-label>
+  </ion-item>
+</ion-content>
