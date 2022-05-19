@@ -18,7 +18,7 @@ export class FavoritesPage implements OnInit {
     private gigService: GigService,
     private sqlite: SQLiteService,
   ) {
-    this.sqlite.databaseConn();
+    //this.sqlite.databaseConn();
    }
 
   ngOnInit() {

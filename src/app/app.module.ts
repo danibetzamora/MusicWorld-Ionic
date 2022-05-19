@@ -27,7 +27,7 @@ import { SQLite } from '@ionic-native/sqlite/ngx';
     provideFirestore(() => getFirestore())
   ],
   providers: [
-    SQLite,
+    SQLite, 
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

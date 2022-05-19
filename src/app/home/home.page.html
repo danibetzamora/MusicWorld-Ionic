@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">  
-      <ion-menu-button style="color:#211DBF;"></ion-menu-button>   
+      <ion-menu-button color="dark" style="zoom:1.5"></ion-menu-button>   
     </ion-buttons>  
     <ion-title>  
       <ion-img src="../assets/images/home-page/main-logo.svg" style="width:10em"></ion-img>
@@ -15,7 +15,8 @@
       <ion-thumbnail slot="start">
         <ion-img src="{{gig.image}}"></ion-img>
       </ion-thumbnail>
-      <ion-label>{{ gig.user_username }}</ion-label>
+      <ion-label class="gig-name">{{ gig.name }}</ion-label>
+      <ion-label class="gig-price">{{ gig.price }} €</ion-label>
     </ion-item>
   </ion-list>
 

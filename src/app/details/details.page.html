@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">  
-      <ion-menu-button style="color:#211DBF;"></ion-menu-button>   
+      <ion-menu-button color="dark" style="zoom:1.5"></ion-menu-button>   
     </ion-buttons>  
     <ion-title>  
       <ion-img src="../assets/images/home-page/main-logo.svg" style="width:10em"></ion-img>
@@ -10,7 +10,46 @@
 </ion-header>
 
 <ion-content>
-    <ion-item>
+  <div class="details-container">
+    <p class="gig-title">{{ gig.name }}</p>
+
+    <ion-img src="{{ gig.image }}" class="details-image"></ion-img>
+
+    <div class="details-content">
+      <div class="details-content-items">
+        <p><span class="details-content-label">Author:  </span> {{ gig.user_username }}</p>
+        <p><span class="details-content-label">Description:  </span> {{ gig.desc }}</p>
+        <p><span class="details-content-label">Rating:  </span> {{ gig.rating }} / 5</p>
+        <p><span class="details-content-label">Price:  </span> {{ gig.price }} €</p>
+      </div>
+    </div>
+    
+    <!--div *ngFor="let fav of sqlite.FAVS">
+      <div *ngIf="gig.id == fav.id">
+        <ion-button (click)="deleteFav(gig.id)" color="danger" [routerLink]="'/favorites/'" class="favorites-button">
+          <ion-icon slot="icon-only" name="star" style="color: #fff;"></ion-icon>
+        </ion-button>
+      </div>
+    </div>
+    <!--div *ngIf="true">
+      <ion-button (click)="addFav(gig.user_username,gig.id,gig.image)" color="warning" [routerLink]="'/favorites/'" class="favorites-button">
+        <ion-icon slot="icon-only" name="star" style="color: #fff;"></ion-icon>
+      </ion-button>
+    </div-->
+    <div *ngIf="!getFav(gig.id)">
+      <ion-button (click)="addFav(gig.user_username,gig.id,gig.image)" color="warning" [routerLink]="'/favorites/'" class="favorites-button">
+        <ion-icon slot="icon-only" name="star" style="color: #fff;"></ion-icon>
+      </ion-button>
+    </div>
+
+    <div *ngIf="getFav(gig.id)">
+      <ion-button (click)="deleteFav(gig.id)" color="danger" [routerLink]="'/favorites/'" class="favorites-button">
+        <ion-icon slot="icon-only" name="star" style="color: #fff;"></ion-icon>
+      </ion-button>
+    </div>
+
+  </div>
+    <!--ion-item>
       <ion-label>{{ gig.desc }}</ion-label>
       <div class="item-note" item-end>
         <ion-button (click)="addFav(gig.user_username,gig.id)">
@@ -23,5 +62,5 @@
       </div>
     </ion-item>
     
-    <ion-item [routerLink]="'/favorites/'"></ion-item>
+    <ion-item [routerLink]="'/favorites/'"></ion-item-->
 </ion-content>
