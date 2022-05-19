@@ -11,6 +11,8 @@ import { SQLiteService } from '../services/SQLite.service';
 })
 export class FavoritesPage implements OnInit {
 
+  id: string = '';
+
   constructor(
     private route: ActivatedRoute,
     private gigService: GigService,

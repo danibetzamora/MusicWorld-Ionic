@@ -35,8 +35,13 @@ export class DetailsPage implements OnInit {
     );
   }
 
-  public addFav(name) {
-    this.sqlite.addGig(name);
+  public addFav(name,i) {
+    this.sqlite.addGig(name,i);
+  }
+
+  public deleteFav(i) {
+    let newI = String(i);
+    this.sqlite.deleteGig(newI);
   }
 
 }

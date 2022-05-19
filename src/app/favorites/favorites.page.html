@@ -1,13 +1,18 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>favorites</ion-title>
+    <ion-buttons slot="start">  
+      <ion-menu-button style="color:#211DBF;"></ion-menu-button>   
+    </ion-buttons>  
+    <ion-title>  
+      <ion-img src="../assets/images/home-page/main-logo.svg" style="width:10em"></ion-img>
+    </ion-title> 
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-item *ngFor="let gig of sqlite.FAVS">
     <ion-label>
-      <h2><strong>{{ gig.name }}</strong></h2>
+      <h2 [routerLink]="'/details/' + gig.id"><strong>{{ gig.name }}  {{ gig.id }}</strong></h2>
     </ion-label>
   </ion-item>
 </ion-content>

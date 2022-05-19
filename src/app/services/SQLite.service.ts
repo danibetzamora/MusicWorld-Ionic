@@ -24,28 +24,33 @@ constructor(
           this.sqlite.create({name:this.db_name, location: 'default'})
           .then((sqLite: SQLiteObject) => {
             this.dbInstance = sqLite;
+            //sqLite.executeSql(`DROP TABLE IF EXISTS ${this.db_table}`);
             sqLite.executeSql(`
             CREATE TABLE IF NOT EXISTS ${this.db_table} 
               (gig_id INTEGER PRIMARY KEY, 
-              name varchar(255))`, [])
-            .then((res) => {alert(JSON.stringify(res));})
-            .catch((error) => alert(JSON.stringify(error)));
+              name varchar(255), id varchar(255))`, [])
+            //.then((res) => {alert(JSON.stringify(res));})
+            //.catch((error) => alert(JSON.stringify(error)));
           })
           .catch((error) => alert(JSON.stringify(error)));
         });
       }
 
-    public addGig(n) {
+    public addGig(n, i) {
         if (!n.length) {
             alert('Provide both email & name');
             return;
         }
-    
+        /*
+        this.dbInstance.executeSql(`BEGIN IF NOT EXISTS (SELECT * FROM ${this.db_table} 
+          WHERE id = "${i}") BEGIN INSERT INTO ${this.db_table} (name,id) VALUES ('${n}', '${i}') END END`, []);
+        */
         this.dbInstance.executeSql(`
-        INSERT INTO ${this.db_table} (name) VALUES ('${n}')`, [])
+        INSERT INTO ${this.db_table} (name,id) VALUES ('${n}', '${i}')`, [])
         .then(() => {
         alert("Success");
         }, (e) => {alert(JSON.stringify(e.err));});
+        
     }
 
     getAllGigs() {
@@ -65,7 +70,7 @@ constructor(
 
       deleteGig(gig) {
         this.dbInstance.executeSql(`
-        DELETE FROM ${this.db_table} WHERE user_id = ${gig}`, [])
+        DELETE FROM ${this.db_table} WHERE id = "${gig}"`, [])
         .then(() => {
           alert("Gig deleted!");
         })
