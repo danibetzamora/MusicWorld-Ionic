@@ -9,28 +9,17 @@ import { map } from 'rxjs/operators';
   })
 
 export class GigService {
-/*
+
+  collection = 'gigs';
+
   constructor(private firestore: Firestore) {}
 
-  getGigs(): Observable<Gig[]> {
-    const gigsCollection = collection(this.firestore, 'gigs');
-    // returns a stream of documents mapped to their payload and id
-    return collectionData(gigsCollection, {idField: 'id'})
-    .pipe(
-    map(gigs => gigs as Gig[])
-    );
-    }
-*/
-    collection = 'gigs';
+  getDocument(id: string) {
+      return docSnapshots( doc(this.firestore, `${this.collection}/${id}`) );
+  }
 
-    constructor(private firestore: Firestore) {}
-
-    getDocument(id: string) {
-        return docSnapshots( doc(this.firestore, `${this.collection}/${id}`) );
-    }
-
-    getList() {
-        return collectionSnapshots( collection(this.firestore, this.collection) );
-    }
+  getList() {
+      return collectionSnapshots( collection(this.firestore, this.collection) );
+  }
 
 }

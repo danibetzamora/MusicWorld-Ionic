@@ -10,9 +10,24 @@
 </ion-header>
 
 <ion-content>
-  <ion-item *ngFor="let gig of sqlite.FAVS">
+  <div class="empty" *ngIf="sqlite.FAVS.length == 0">
+    <h1>You dont have favorites gigs!</h1>
+  </div>
+
+  <ion-list *ngIf="sqlite.FAVS.length > 0">
+    <h1 class="main-title">Favorites Gigs List</h1>
+    <ion-item *ngFor="let gig of sqlite.FAVS" [routerLink]="'/details/' + gig.id">
+      <ion-thumbnail slot="start">
+        <ion-img src="{{gig.image}}"></ion-img>
+      </ion-thumbnail>
+      <ion-label class="gig-name">{{ gig.name }}</ion-label>
+      <ion-icon name="star-outline" style="color: #FFFF00; display: flex; justify-content: end;"></ion-icon>
+      <!--ion-label class="gig-price">{{ gig.price }} €</ion-label-->
+    </ion-item>
+  </ion-list>
+  <!--ion-item *ngFor="let gig of sqlite.FAVS">
     <ion-label>
       <h2 [routerLink]="'/details/' + gig.id"><strong>{{ gig.name }}  {{ gig.image }}</strong></h2>
     </ion-label>
-  </ion-item>
+  </ion-item-->
 </ion-content>

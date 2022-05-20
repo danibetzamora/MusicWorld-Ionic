@@ -11,7 +11,6 @@ private dbInstance: SQLiteObject;
 readonly db_name: string = "remotestack.db";
 readonly db_table: string = "favsTable";
 FAVS: Array <any>;
-//isFav: boolean;
 
 constructor(
     private platform: Platform,
@@ -30,28 +29,17 @@ constructor(
             CREATE TABLE IF NOT EXISTS ${this.db_table} 
               (gig_id INTEGER PRIMARY KEY, 
               name varchar(255), id varchar(255), image varchar(255))`, [])
-            //.then((res) => {alert(JSON.stringify(res));})
-            //.catch((error) => alert(JSON.stringify(error)));
           })
           .catch((error) => alert(JSON.stringify(error)));
         });
       }
 
     public addGig(gig_name, gig_id, gig_image) {
-        if (!gig_name.length) {
-            alert('Provide both email & name');
-            return;
-        }
-        /*
-        this.dbInstance.executeSql(`BEGIN IF NOT EXISTS (SELECT * FROM ${this.db_table} 
-          WHERE id = "${i}") BEGIN INSERT INTO ${this.db_table} (name,id) VALUES ('${n}', '${i}') END END`, []);
-        */
         this.dbInstance.executeSql(`
         INSERT INTO ${this.db_table} (name,id,image) VALUES ('${gig_name}', '${gig_id}', '${gig_image}')`, [])
         .then(() => {
-        alert("Success");
+        alert("Added to favorites");
         }, (e) => {alert(JSON.stringify(e.err));});
-        
     }
 
     getAllGigs() {
@@ -73,31 +61,10 @@ constructor(
       this.dbInstance.executeSql(`
       DELETE FROM ${this.db_table} WHERE id = "${gig_id}"`, [])
       .then(() => {
-        alert("Gig deleted!");
+        alert("Deleted from favorites!");
       })
       .catch((e) => {
         alert(JSON.stringify(e));
       });
     }
-/*
-    getFav(id):Promise<any> {
-      return this.dbInstance.executeSql(`
-      SELECT id FROM ${this.db_table} WHERE id = "${id}"`);
-      
-    }
-
-  isGigFav(id) {
-    this.dbInstance.executeSql(`SELECT
-    CASE WHEN EXISTS 
-    (
-          SELECT * FROM ${this.db_table} WHERE id=${id}
-    )
-    THEN 'TRUE'
-    ELSE 'FALSE'
-    END`, [])
-    .then((res) => {
-      this.isFav = res;
-    });
-  }
-*/
 }

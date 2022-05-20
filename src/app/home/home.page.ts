@@ -11,17 +11,7 @@ import { SQLiteService } from '../services/SQLite.service';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-
-  /*public gigs: Observable<Gig[]>;
-
-  constructor(
-    private gigService: GigService,
-    public modalController: ModalController,
-    private routerOutlet: IonRouterOutlet
-  ) { 
-    this.gigs = this.gigService.getGigs();
-  }
-  */
+  
   gigs: Gig[] = [];
 
   constructor(

@@ -12,12 +12,10 @@
 
 .details-image {
     width: 15em;
-    //border: solid 2px #000;
 }
 
 .details-content {
     display: flex;
-    //justify-content: space-between;
     width: 90%;
     height: 45vh;
     padding-top: 1em;
@@ -42,17 +40,6 @@
 .favorites-button {
     width: 7em;
 }
-
-/*
-.details-content-desc {
-    width: 60%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    gap: 0.5em;
-}
-*/
 
 .details-content p {
     min-height: 10%;
