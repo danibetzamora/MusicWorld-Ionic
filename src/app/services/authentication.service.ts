@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {AngularFireAuth} from "@angular/fire/compat/auth";
+import { Alert } from 'selenium-webdriver';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticateService{
@@ -14,6 +15,7 @@ export class AuthenticateService{
           err => {
             reject(err);
             console.log(err);
+            alert(err);
           })
     })
   }
@@ -23,7 +25,14 @@ export class AuthenticateService{
       this.afAuth.signInWithEmailAndPassword(value.email, value.password)
         .then(
           res => resolve(res),
-          err => reject(err))
+          err => {
+            reject(err);
+            console.log(err);
+            alert(err);
+          
+          
+          
+          })
     })
   }
 
