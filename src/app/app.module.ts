@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { environment } from "../environments/environment";
@@ -14,14 +14,20 @@ import {AngularFireDatabaseModule} from "@angular/fire/compat/database";
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 
 import { SQLite } from '@ionic-native/sqlite/ngx';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {AngularFirestore} from "@angular/fire/compat/firestore";
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent,
+  ],
   entryComponents: [],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideFirestore(() => getFirestore()),
     AngularFireModule.initializeApp(environment.firebaseConfig),
