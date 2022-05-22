@@ -10,15 +10,15 @@
 </ion-header>
 
 <ion-content>
-  <form (ngSubmit)="login()">
+  <form (ngSubmit)="changeInfo()">
     <ion-item lines="full">
       <ion-label position="floating">Change Name</ion-label>
-      <ion-label color="primary" position="floating">Alejandro</ion-label>
+      
       <ion-input type="text" [(ngModel)]="form.name"      name="name"></ion-input>
     </ion-item>
     <ion-item lines="full">
       <ion-label position="floating"> Change Surname</ion-label>
-      <ion-label color="primary" position="floating"> Viera McGorrin</ion-label>
+      
       <ion-input type="text"  [(ngModel)]="form.surname"  name="surname"></ion-input>
     </ion-item>
     <ion-row>

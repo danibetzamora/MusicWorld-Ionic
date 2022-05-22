@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {AngularFireAuth} from "@angular/fire/compat/auth";
 import { Alert } from 'selenium-webdriver';
-import { Firestore, addDoc, collection, docSnapshots, doc, where, limit, collectionSnapshots, query } from "@angular/fire/firestore";
+import { Firestore, addDoc, collection, docSnapshots, doc, where, limit, collectionSnapshots, query, updateDoc } from "@angular/fire/firestore";
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticateService{
@@ -56,5 +56,12 @@ export class AuthenticateService{
 
   logoutUser() {
     if (this.afAuth.currentUser) return this.afAuth.signOut();
+  }
+
+  updateUserDetails(id, name, surname){
+    return updateDoc( doc(this.firestore, `users/${id}`), {
+      name,
+      surname,
+    });
   }
 }
