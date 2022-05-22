@@ -24,13 +24,13 @@
       </div>
     </div>
 
-    <div *ngIf="!getFav(gig.id)">
+    <div *ngIf="!getFav(gig.id) && is_authenticated">
       <ion-button (click)="addFav(gig.user_username,gig.id,gig.image)" color="warning" [routerLink]="'/favorites/'" class="favorites-button">
         <ion-icon slot="icon-only" name="star" style="color: #fff;"></ion-icon>
       </ion-button>
     </div>
 
-    <div *ngIf="getFav(gig.id)">
+    <div *ngIf="getFav(gig.id) && is_authenticated">
       <ion-button (click)="deleteFav(gig.id)" color="danger" [routerLink]="'/favorites/'" class="favorites-button">
         <ion-icon slot="icon-only" name="star" style="color: #fff;"></ion-icon>
       </ion-button>
