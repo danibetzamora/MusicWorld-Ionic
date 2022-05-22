@@ -1,0 +1,29 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">  
+      <ion-menu-button color="dark" style="zoom:1.5"></ion-menu-button>   
+    </ion-buttons>  
+    <ion-title>  
+      <ion-img src="../assets/images/home-page/main-logo.svg" style="width:10em"></ion-img>
+    </ion-title> 
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form (ngSubmit)="login()">
+    <ion-item lines="full">
+      <ion-label position="floating">Email</ion-label>
+      <ion-input type="text" required [(ngModel)]="form.email" name="Email"></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Password</ion-label>
+      <ion-input type="password" required [(ngModel)]="form.password" name="Password"></ion-input>
+    </ion-item>
+    <ion-row>
+      <ion-col>
+        <ion-button ion-button type="submit" expand="block">Sign In</ion-button>
+        
+      </ion-col>
+    </ion-row>
+  </form>
+</ion-content>

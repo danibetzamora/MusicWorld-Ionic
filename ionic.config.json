@@ -1,0 +1,7 @@
+{
+  "name": "mwionic",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

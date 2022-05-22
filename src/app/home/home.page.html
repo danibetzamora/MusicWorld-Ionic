@@ -1,0 +1,22 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">  
+      <ion-menu-button color="dark" style="zoom:1.5"></ion-menu-button>   
+    </ion-buttons>  
+    <ion-title>  
+      <ion-img src="../assets/images/home-page/main-logo.svg" style="width:10em"></ion-img>
+    </ion-title> 
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list>
+    <ion-item *ngFor="let gig of gigs" [routerLink]="'/details/' + gig.id">
+      <ion-thumbnail slot="start">
+        <ion-img src="{{gig.image}}"></ion-img>
+      </ion-thumbnail>
+      <ion-label class="gig-name">{{ gig.name }}</ion-label>
+      <ion-label class="gig-price">{{ gig.price }} €</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
