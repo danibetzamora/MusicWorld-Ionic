@@ -1,21 +1,28 @@
 import { Injectable } from '@angular/core';
 import {AngularFireAuth} from "@angular/fire/compat/auth";
+import { Firestore, addDoc, collection, docSnapshots, doc, where, limit, collectionSnapshots, query } from "@angular/fire/firestore";
+
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticateService{
 
-  constructor(private afAuth: AngularFireAuth) { }
+  constructor(private afAuth: AngularFireAuth, private firestore: Firestore) { }
 
-  registerUser(value) {
+  registerUser(value, success = (arg) => {}, error = (arg) => {}) {
     return new Promise<any>((resolve, reject) => {
-      this.afAuth.createUserWithEmailAndPassword(value.email, value.password)
-        .then(
-          res => resolve(res),
-          err => {
-            reject(err);
-            console.log(err);
-          })
-    })
+      this.afAuth.createUserWithEmailAndPassword(value.email, value.password).then(
+        (res) => {
+          this.authDetails().subscribe(
+            (item) => {
+              addDoc( collection(this.firestore, `users`), {
+                name: value.name,
+                surname: value.surname,
+                auth_id: item.uid,
+              }).then(success);
+            }
+          )
+        }, error)
+    });
   }
 
   loginUser(value) {
@@ -27,21 +34,20 @@ export class AuthenticateService{
     })
   }
 
-  userDetails() {
-    return this.afAuth.user
+  userDetails(id) {
+    let q = query(
+      collection(this.firestore, 'users'),
+      where('auth_id', '==', id),
+      limit(1)
+    );
+    return collectionSnapshots(q);
+  }
+
+  authDetails() {
+    return this.afAuth.user;
   }
 
   logoutUser() {
-    return new Promise<void>(( resolve, reject) => {
-      if (this.afAuth.currentUser) {
-        this.afAuth.signOut()
-          .then(() => {
-            console.log("LOG Out");
-            resolve();
-          }).catch((error) => {
-          reject();
-        });
-      }
-    })
+    if (this.afAuth.currentUser) return this.afAuth.signOut();
   }
 }

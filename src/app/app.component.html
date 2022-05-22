@@ -8,8 +8,10 @@
     <ion-content>
       <ion-list>
         <ion-item (click)="redirect('home')">Home</ion-item>
-        <ion-item (click)="redirect('register')">Register</ion-item>
-        <ion-item (click)="redirect('login')">Log In</ion-item>
+        <ion-item *ngIf="! is_authenticated" (click)="redirect('register')">Register</ion-item>
+        <ion-item *ngIf="! is_authenticated" (click)="redirect('login')">Log In</ion-item>
+        <ion-item *ngIf="is_authenticated" (click)="redirect('login')">User details</ion-item>
+        <ion-item *ngIf="is_authenticated" (click)="logout()">Log Out</ion-item>
       </ion-list>
     </ion-content>
   </ion-menu>

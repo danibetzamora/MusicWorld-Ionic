@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MenuController } from '@ionic/angular';
 import {Router} from "@angular/router";
+import {AuthenticateService} from "./services/authentication.service";
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,13 @@ import {Router} from "@angular/router";
 })
 export class AppComponent {
 
-  constructor(private menu: MenuController, private router: Router) {}
+  private is_authenticated = null;
+
+  constructor(private menu: MenuController, private router: Router, private authenticationService: AuthenticateService) {
+    this.authenticationService.authDetails().subscribe(
+      (user) => this.is_authenticated = (user != null)
+    )
+  }
 
   redirect(page) {
     this.router.navigate([page]);
@@ -28,6 +35,10 @@ export class AppComponent {
   openCustom() {
     this.menu.enable(true, 'custom');
     this.menu.open('custom');
+  }
+
+  logout(){
+    this.authenticationService.logoutUser().then( () => this.redirect('login') );
   }
 
 }
