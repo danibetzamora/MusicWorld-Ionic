@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticateService } from "../services/authentication.service";
 import {Router} from "@angular/router";
+import {MenuController} from "@ionic/angular";
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -15,15 +16,13 @@ export class LoginPage implements OnInit {
 
   };
 
-  constructor(private authenticationService: AuthenticateService ) { }
+  constructor(private authenticationService: AuthenticateService, private router: Router) { }
 
   ngOnInit() {
   }
 
   login() {
-console.log(this.form);
-this.authenticationService.loginUser(this.form);
-
+    this.authenticationService.loginUser(this.form).then( () => this.router.navigate(['home']) );
   }
 
 }
