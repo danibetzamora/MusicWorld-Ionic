@@ -1,20 +1,22 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <ion-buttons slot="start">  
+      <ion-menu-button color="dark" style="zoom:1.5"></ion-menu-button>   
+    </ion-buttons>  
+    <ion-title>  
+      <ion-img src="../assets/images/home-page/main-logo.svg" style="width:10em"></ion-img>
+    </ion-title> 
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <ion-list>
+    <ion-item *ngFor="let gig of gigs" [routerLink]="'/details/' + gig.id">
+      <ion-thumbnail slot="start">
+        <ion-img src="{{gig.image}}"></ion-img>
+      </ion-thumbnail>
+      <ion-label class="gig-name">{{ gig.name }}</ion-label>
+      <ion-label class="gig-price">{{ gig.price }} €</ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>
